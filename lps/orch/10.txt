@@ -1,0 +1,22 @@
+
+Introduction
+This document discusses several technology investments the LinkedIn Platform as a Service Orchestration team is making in coordination with the LPS Organization as a whole as defined in the LPS Vision Document.
+By reading this document, you should understand the overall direction that the team is heading, in conjunction with the LPS Organization as a whole, to support LinkedIn Engineering into the future.
+Mission
+The mission of the LPS Orchestration ecosystem is to orchestrate the intent of users into reality.
+Ideals
+In order to accomplish our mission, we will adopt some ideals that will guide us in our designs and implementations. These ideals are:
+Pareto Principle: The LPS Orchestration ecosystem should be able to serve 80% of customers and use-cases, without the need for customization, in a feature-complete way.  The remaining 20% should have access to robust APIs and services (i.e. the platform) that allow them to expand on top of our interlocking building blocks to better suit their needs.
+
+
+Event-driven Architecture: The LPS Orchestration ecosystem should be reactive to outside events (e.g. deployment and source control events), even in the case that the action leading to the event being generated was not initiated via the LPS Orchestration ecosystem.
+We realize that not all actions and requests are going to be done within the Orchestration ecosystem, and that we should be providing support for non-orchestration originated actions. To that end, we should do our best to track and understand actions done on underlying systems to ensure we present the best view of state to users, and are reactive to the new state, in accordance with the users’ intent as expressed by them within the LPS Orchestration ecosystem. 
+
+It is important to note that while this approach has its merits (e.g. best shot at consistency), a major drawback is that it may discourage users from initiating actions through the LPS Orchestration ecosystem due to lack of features and/or functionality.
+
+Break-Glass model: The LPS Orchestration ecosystem enforces restrictions (or policies). The Plan Execution component (See “Plan Execution” below) will honor any policy restrictions put in place, but the source of truth for their definition, storage, and customization will be within the Policy Resolution and Storage component. However, if it is acceptable for these policies to be overridden by the end user, the Plan Execution component will err on allowing its users to act. Any override of a policy should be paired with auditing and notifications.
+This ideal is based on the LPS Vision Document where, when describing key insights, we declared that we want “to focus on providing policy-free infrastructure.”
+
+Declarativeness: The LPS Orchestration ecosystem will allow for declarative interactions rather than imperative ones. Current imperative implementations give us many boundaries and restrict our implementation options.
+
+Orchestration Single Responsibility: The LPS Orchestration ecosystem should provide a central coordination layer for lower level systems, and that’s where the value-add of LPS Orchestration ecosystem features should be. It should not become a place where missing features from orchestrated systems are implemented.
